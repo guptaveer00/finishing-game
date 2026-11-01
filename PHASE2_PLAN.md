@@ -1,6 +1,6 @@
 # Phase 2 implementation plan
 
-Baseline: e3da2c2, Yash's unmodified downloaded files, committed before opening project files.
+Baseline: e3da2c2, the unmodified downloaded files, committed before opening project files.
 
 Read order: SPEC.md, README.md, prompt_log.md, then existing source. The unchanged game was opened in the browser before editing.
 
