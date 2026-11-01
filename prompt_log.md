@@ -50,46 +50,30 @@ Do not implement these features or change the spec
 
 ---
 
-# Phase 2 — Veer Gupta
+# Phase 2
 
 ## Tool/model
 
-OpenAI Codex desktop assistant (exact model version unavailable in this chat), shell/Git, JavaScript execution, and browser automation. Existing vanilla HTML/CSS/JavaScript was retained; no dependencies or new framework were introduced.
+OpenAI Codex desktop assistant
 
-## Important user prompts, verbatim
+1) Find the extracted CodeHandoff-main folder on my Desktop. Before opening or editing its files, create a new Git repository and commit all received files unchanged with the message “Initial commit: unmodified code as received.” Connect it to https://github.com/guptaveer00/finishing-game and push. Don’t implement anything yet.
 
-> i dowloaded the zip and unziped it, and moved the entire file to my dekstop. now can u do the next steps, i created this new repo:
-> [https://github.com/guptaveer00/finishing-game](https://github.com/guptaveer00/finishing-game)
+2) Read SPEC.md first, then README.md, prompt_log.md, and the source. Run the original game before changing it. Explain the file structure, which acceptance criteria already work, and what remains. Flag unclear requirements and differences between the documentation and actual behavior. Don’t edit files yet.
 
-## AI actions (summaries, not additional user prompts)
+3) Make a prioritized Phase 2 plan based on the author’s acceptance criteria and roughly two hours of work. Preserve the original architecture and at least 75% of the original work. Identify the existing functions and TODOs we can extend. Prioritize a complete playable game before extra levels, visuals, or sound.
 
-1. Located the extracted Desktop folder. Initialized a fresh Git history and committed all received files unchanged before opening their contents. Pushed the baseline to the new repository.
-2. Read SPEC.md first, then README.md, prompt_log.md, and the source. Opened the unchanged game in a browser. Recorded priorities in PHASE2_PLAN.md.
-3. Extended existing files at the author's TODOs: copied collectible-key state, locked exit checks, spikes, R restart, additional levels, automatic progression, victory, status text, and flip feedback. Kept original player and axis-separated physics logic, adding small physics steps for the documented tunneling issue. Added optional synthesized sound in one new file.
-4. Checked complete routes and core interactions using a repeatable JavaScript harness, and verified the first level through keyboard browser play. Updated README criterion by criterion and credited Yash.
+4) Implement key collection and locked exits using the existing level format and rectanglesOverlap() helper. Copy collectible state when loading a level so restarting can restore it without changing the original level data. An exit should open only after all keys are collected. Keep the original movement and collision logic. Verify locked exits, collection, and unlocking, then commit this change separately.
 
-## AI behavior that needed correction
+5) Add spikes that reset the current level and an R-key restart using the existing loadLevel() function. Both should restore the player and keys. Follow the existing one-press input pattern so holding R does not repeatedly restart. Check these behaviors and review the diff for unrelated changes before committing.
 
-The AI's initial final-level design and proposed route did not work together: the late platform allowed a fall into spikes, and moving it too far left then blocked the intended ascent. A route check failed with the player resetting and becoming stuck at the first wall on the attempted route. The AI adjusted only the new platform's position/width and allowed time to drop below the ceiling spikes before moving. The full route then reached the final exit. No inherited collision logic was thrown away to solve the level-design error.
+6) Add automatic progression through three levels and a victory screen after the final exit. Stop player movement after victory, and let R restart from level one. Reuse the existing level-loading and rendering structure. Verify a complete route through every level using movement and gravity switches rather than teleporting the player.
 
-The first version of the route-test helper also kept moving toward the previous level's target after an automatic transition. It was corrected to stop when the level changes. These are actual implementation/testing mistakes, not invented user prompts.
+7) Now that the core game works, add a brief visual effect when gravity switches and optional sounds for flipping and completing a level. Keep these changes separate from physics. Sound should require user interaction and should never prevent gameplay if unavailable. Explain which audio behavior you can test and which remains unverified.
 
-## Boundaries and result
+8) Add three more levels using the existing level-data format. Make them longer through multiple keys, alternating floor and ceiling obstacles, and return trips to the exit. Keep the first three levels intact. Check that every key is reachable and every level has a complete route. Update victory text to use the actual level count.
 
-SPEC.md was preserved unchanged, and no original source files were deleted or renamed. The original prompt log above is retained. AI did not write HANDOFF_REPORT.md; Veer needs to write his own account of inheriting the project. The Google form has not been submitted by AI.
+9) Improve the visuals with a consistent space-facility theme, readable controls, clear pocket sorry, key and exitstates, and level progress. Keep collision shapes, movement, controls, and level geometry unchanged. Preserve the existing rendering functions where practical. Check the layout at desktop and narrow widths, then rerun the gameplay checks.
 
+10) Update the README with run instructions, controls, a simple code map, known limitations, and a numbered report against every original acceptance criterion. Mark each met, partially met, or not met using verified evidence.
 
-## Level expansion prompt (verbatim)
-
-> can u add more levels, this seems more simple. or like if not more levels make them longer and stuff
-
-Added levels 4–6 within the existing LEVELS array. These use three/four keys, alternating wall paths, return trips, a ceiling start, and additional hazards. Preserved levels 1–3 and the inherited movement/collision architecture. Updated the victory text to use LEVELS.length, extended the route tests through all six levels, and updated the README. All 20 checks passed, including complete movement-based routes through every added level.
-
-
-## Visual and requirements review prompt (verbatim)
-
-> can u make it more visually applead, and stuff also make sure it follows all the instructions from yashs game and the instrusctions
-
-Added a facility-themed visual layer while preserving movement, collisions, levels, controls, and the original rendering functions. Added a level progress display, grid backdrop, shaded platforms, player/key/exit glow, clearer controls, an object legend, and visible author credit. All 20 regression checks still passed; browser keyboard play collected a key and unlocked the exit without console errors.
-
-Verified that all received files remain, SPEC.md is byte-for-byte unchanged, the root commit is the unchanged received baseline, and the repository is public. Of the 517 original source lines, 492 remain verbatim; no original source file was removed or renamed. README reports all 13 spec criteria with notes about the multi-key level and optional sound. HANDOFF_REPORT.md is still absent because Veer must write it himself without AI. The Google form and personal review have not been completed by the assistant.
+11) Check the unchanged baseline commit, unchanged SPEC.md, preservation of original work, public repository status, required files, documentation accuracy, and published commits.
