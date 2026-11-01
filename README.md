@@ -1,8 +1,5 @@
 # GravitySwitcher
 
-**Original game design and Phase 1 code: Yash Gupta.**
-Phase 2 additions: Veer Gupta, with Codex assistance.
-
 Flip gravity to walk on the floor or ceiling, collect every key, and reach the open exit. Avoid pink spikes. Six levels progress automatically, ending with a victory screen.
 
 ## Run and controls
@@ -17,8 +14,6 @@ Download/extract the whole repository and open `index.html` in a desktop browser
 Gold keys unlock the exit only when all keys in the level are collected. The exit changes from purple **LOCK** to green **OPEN**. The display shows level, keys remaining, exit state, and gravity direction. Touching spikes resets the entire current level, including its keys.
 
 ## Acceptance criteria report
-
-Numbering matches Yash's unchanged SPEC.md.
 
 1. **Met:** arrow keys move the player horizontally.
 2. **Met:** one Space press reverses gravity, including midair.
@@ -57,10 +52,10 @@ The later levels are longer through out-and-back routes, rather than a larger sc
 
 - `index.html`: canvas, controls, status text, and script order.
 - `css/style.css`: page styling, including the added status and sound button.
-- `js/config.js`: Yash's original size, speed, gravity, and color constants.
+- `js/config.js`:original size, speed, gravity, and color constants.
 - `js/input.js`: held keys and one-time Space/R presses.
 - `js/levels.js`: original floor/ceiling helper and first wall, plus keys, exits, spikes, and five new levels.
-- `js/player.js`: Yash's original player creation and gravity switch.
+- `js/player.js`: original player creation and gravity switch.
 - `js/physics.js`: original rectangle and axis-separated collision functions, with a small-step wrapper added.
 - `js/renderer.js`: original background/solid/player drawing, plus keys, exits, spikes, flip border, and victory.
 - `js/sound.js`: optional synthesized tones and sound button.
@@ -81,7 +76,7 @@ Browser checks verified the unchanged baseline first, then keyboard movement, ke
 
 ## Known limitations and shortcuts
 
-- Gravity reversal changes acceleration, not existing vertical velocity: flipping while falling can take a moment to reverse motion. This preserves Yash's original behavior.
+- Gravity reversal changes acceleration, not existing vertical velocity: flipping while falling can take a moment to reverse motion. 
 - Spike collision uses the full bounding rectangle of the drawn triangles, so visual gaps between spikes still count as hazards.
 - Keyboard controls target desktop browsers; mobile/touch controls are not implemented.
 - Audio needs browser support and an explicit click. Unsupported/blocked audio does not prevent play.
