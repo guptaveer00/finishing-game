@@ -1,47 +1,77 @@
-GravitySwitcher
+# GravitySwitcher
 
-A game where you flip gravity to walk on the floor or the ceiling.
-Phase 1 is a foundation where you can move, flip gravity, and get past one wall, but there is no key, exit or way to win yet.
+**Original game design and Phase 1 code: Yash Gupta.**
+Phase 2 additions: Veer Gupta, with Codex assistance.
 
-Run it with open index.html in a browser, or run a local server:
-python3 -m http.server 8000   # then visit http://localhost:8000
+Flip gravity to walk on the floor or ceiling, collect every key, and reach the open exit. Avoid pink spikes. Three levels progress automatically, ending with a victory screen.
 
-arrows for moving and space fo Flip gravity (works mid-air)
+## Run and controls
 
-SPEC acceptance criteria
-Arrow keys move the player - Yes
-Space reverses gravity - Yes
-Can't pass through floors, ceilings, walls - Yes
+Download/extract the whole repository and open `index.html` in a desktop browser. No installation or build is needed. Alternatively, run `python3 -m http.server 8000` here and open http://localhost:8000.
 
-Not Yet:
-Keys remove themselves and unlock the exit 
-Locked exit doesn't complete the level 
-One level can be finished start to end
-Spikes reset the player 
-Several levels that progress automatically
-R restarts the level 
-Level number and controls on screen - Partial with control instructions
-Win message after the final level 
-Gravity switch has a visible effect - Partial (eye moveemnt)
-Sounds on flip and level complete 
+- **Left/right arrows:** move.
+- **Space:** reverse gravity, even in midair.
+- **R:** restart the current level, restoring its keys; after victory, restart the whole game.
+- **Sound button:** turn optional flip and completion sounds on/off. Sound starts off and needs a click to enable.
 
-index.html - controls text
-css/style.css - Page styling 
-js/config.js -  Constants like canvas and player size
-js/input.js - Keyboard state.
-js/levels.js - The LEVELS array and the level format. createFloorAndCeiling() builds the two default solids
-js/player.js - createPlayer() builds the player object and switchPlayerGravity() flips it
-js/physics.js - updatePlayerPhysics() moves the player along x, then y.
-js/renderer.js - renderFrame() draws the background and the player.
-js/game.js - game States
+Gold keys unlock the exit only when all keys in the level are collected. The exit changes from purple **LOCK** to green **OPEN**. The display shows level, keys remaining, exit state, and gravity direction. Touching spikes resets the entire current level, including its keys.
 
-Next steps
+## Acceptance criteria report
 
-1. Keys, exit, level completion
-2. R to restart and spikes
-3. More levels, auto progression, win screen
-4. On screen level number
-5. Flip effect and sounds
+Numbering matches Yash's unchanged SPEC.md.
 
-Known issues
-- Thin solids can be skipped
+1. **Met:** arrow keys move the player horizontally.
+2. **Met:** one Space press reverses gravity, including midair.
+3. **Met:** the inherited collision functions block floors, ceilings, walls, and platforms; smaller physics steps address the documented thin-solid issue.
+4. **Met:** touching a key removes it; collecting all keys unlocks the exit. Level 3 has two keys, so both are required.
+5. **Met:** a locked exit cannot complete the level.
+6. **Met:** level 1 has a verified complete route using movement, gravity switching, a key, and the exit.
+7. **Met:** touching spikes returns the player to the current level's starting position.
+8. **Met:** three levels progress automatically through unlocked exits.
+9. **Met:** R resets the current level and its collectibles.
+10. **Met:** the page displays the current level number and basic controls.
+11. **Met:** completing the final level displays a victory message and stops movement.
+12. **Met:** the player's eye changes with gravity, a brief border flashes on a flip, and the gravity arrow changes.
+13. **Met (opt-in):** enabling sound plays synthesized tones on flips and level completion. Sound scheduling and the browser toggle were checked; audible output was not independently listened to.
+
+## What changed
+
+Added keys, locked exits, spike resets, R restart, two more levels, automatic progression, victory, status text, flip feedback, and optional sound. The original first level's wall and start remain. Added smaller physics steps around the original collision routine rather than replacing it.
+
+## Code map
+
+- `index.html`: canvas, controls, status text, and script order.
+- `css/style.css`: page styling, including the added status and sound button.
+- `js/config.js`: Yash's original size, speed, gravity, and color constants.
+- `js/input.js`: held keys and one-time Space/R presses.
+- `js/levels.js`: original floor/ceiling helper and first wall, plus keys, exits, spikes, and two new levels.
+- `js/player.js`: Yash's original player creation and gravity switch.
+- `js/physics.js`: original rectangle and axis-separated collision functions, with a small-step wrapper added.
+- `js/renderer.js`: original background/solid/player drawing, plus keys, exits, spikes, flip border, and victory.
+- `js/sound.js`: optional synthesized tones and sound button.
+- `js/game.js`: original load/update/loop structure, extended with keys, restarts, hazards, progression, and victory.
+- `tests/verify.cjs`: repeatable logic/route checks; optional Node.js command: `node tests/verify.cjs`.
+- `PHASE2_PLAN.md`: targets recorded before implementation.
+- `prompt_log.md`: original log followed by the Phase 2 record.
+
+Keep scripts in their current order; game.js starts the game and must load last.
+
+## Preservation and checks
+
+The first commit (`e3da2c2`) contains all received files unchanged, with a fresh history. SPEC.md is unchanged. No original source file was discarded or renamed; the original movement, player model, collision routines, rendering functions, and overall architecture remain. Most changes are additions at the author's TODOs.
+
+The automated checks pass for locked exits, keys, spike resets, routes through all three levels, final victory, restart, immutable level data, thin-platform collisions, and sound scheduling. The routes use simulated directional input and flips rather than teleporting through levels. The locked-exit and spike-reset unit checks place the player directly at the object being tested.
+
+Browser checks verified the unchanged baseline first, then keyboard movement, key collection, unlocking the first exit, automatic transition to level 2, and the sound toggle. No browser JavaScript errors were reported during those checks. Full three-level completion was verified in the simulation; only the first level was played through in the browser.
+
+## Known limitations and shortcuts
+
+- Gravity reversal changes acceleration, not existing vertical velocity: flipping while falling can take a moment to reverse motion. This preserves Yash's original behavior.
+- Spike collision uses the full bounding rectangle of the drawn triangles, so visual gaps between spikes still count as hazards.
+- Keyboard controls target desktop browsers; mobile/touch controls are not implemented.
+- Audio needs browser support and an explicit click. Unsupported/blocked audio does not prevent play.
+- No save system, moving platforms, or extra mechanics were added. Levels restart from the beginning after a spike hit.
+
+## Remaining submission work
+
+Veer must personally write `HANDOFF_REPORT.md` without AI, as the assignment requires, after playing and reviewing the inherited project. This file has intentionally not been generated. Then commit/push it and submit both repository links through the course form.

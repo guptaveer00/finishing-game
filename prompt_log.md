@@ -47,3 +47,33 @@ Do not implement these features or change the spec
 - Reviewed code organization and variable naming for readability.
 - Added comments explaining parts of the game logic.
 - Added TODO comments for features intended for Phase 2, including keys, hazards, exits, and additional levels.
+
+---
+
+# Phase 2 — Veer Gupta
+
+## Tool/model
+
+OpenAI Codex desktop assistant (exact model version unavailable in this chat), shell/Git, JavaScript execution, and browser automation. Existing vanilla HTML/CSS/JavaScript was retained; no dependencies or new framework were introduced.
+
+## Important user prompts, verbatim
+
+> i dowloaded the zip and unziped it, and moved the entire file to my dekstop. now can u do the next steps, i created this new repo:
+> [https://github.com/guptaveer00/finishing-game](https://github.com/guptaveer00/finishing-game)
+
+## AI actions (summaries, not additional user prompts)
+
+1. Located the extracted Desktop folder. Initialized a fresh Git history and committed all received files unchanged before opening their contents. Pushed the baseline to the new repository.
+2. Read SPEC.md first, then README.md, prompt_log.md, and the source. Opened the unchanged game in a browser. Recorded priorities in PHASE2_PLAN.md.
+3. Extended existing files at the author's TODOs: copied collectible-key state, locked exit checks, spikes, R restart, additional levels, automatic progression, victory, status text, and flip feedback. Kept original player and axis-separated physics logic, adding small physics steps for the documented tunneling issue. Added optional synthesized sound in one new file.
+4. Checked complete routes and core interactions using a repeatable JavaScript harness, and verified the first level through keyboard browser play. Updated README criterion by criterion and credited Yash.
+
+## AI behavior that needed correction
+
+The AI's initial final-level design and proposed route did not work together: the late platform allowed a fall into spikes, and moving it too far left then blocked the intended ascent. A route check failed with the player resetting and becoming stuck at the first wall on the attempted route. The AI adjusted only the new platform's position/width and allowed time to drop below the ceiling spikes before moving. The full route then reached the final exit. No inherited collision logic was thrown away to solve the level-design error.
+
+The first version of the route-test helper also kept moving toward the previous level's target after an automatic transition. It was corrected to stop when the level changes. These are actual implementation/testing mistakes, not invented user prompts.
+
+## Boundaries and result
+
+SPEC.md was preserved unchanged, and no original source files were deleted or renamed. The original prompt log above is retained. AI did not write HANDOFF_REPORT.md; Veer needs to write his own account of inheriting the project. The Google form has not been submitted by AI.
