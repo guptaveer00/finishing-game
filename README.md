@@ -3,7 +3,7 @@
 **Original game design and Phase 1 code: Yash Gupta.**
 Phase 2 additions: Veer Gupta, with Codex assistance.
 
-Flip gravity to walk on the floor or ceiling, collect every key, and reach the open exit. Avoid pink spikes. Three levels progress automatically, ending with a victory screen.
+Flip gravity to walk on the floor or ceiling, collect every key, and reach the open exit. Avoid pink spikes. Six levels progress automatically, ending with a victory screen.
 
 ## Run and controls
 
@@ -27,7 +27,7 @@ Numbering matches Yash's unchanged SPEC.md.
 5. **Met:** a locked exit cannot complete the level.
 6. **Met:** level 1 has a verified complete route using movement, gravity switching, a key, and the exit.
 7. **Met:** touching spikes returns the player to the current level's starting position.
-8. **Met:** three levels progress automatically through unlocked exits.
+8. **Met:** six levels progress automatically through unlocked exits.
 9. **Met:** R resets the current level and its collectibles.
 10. **Met:** the page displays the current level number and basic controls.
 11. **Met:** completing the final level displays a victory message and stops movement.
@@ -36,7 +36,18 @@ Numbering matches Yash's unchanged SPEC.md.
 
 ## What changed
 
-Added keys, locked exits, spike resets, R restart, two more levels, automatic progression, victory, status text, flip feedback, and optional sound. The original first level's wall and start remain. Added smaller physics steps around the original collision routine rather than replacing it.
+Added keys, locked exits, spike resets, R restart, five more levels, automatic progression, victory, status text, flip feedback, and optional sound. The original first level's wall and start remain. Added smaller physics steps around the original collision routine rather than replacing it.
+
+## Levels
+
+1. **Learn to Flip:** cross the original wall, collect a key, and reach the exit.
+2. **Watch Your Step:** avoid floor and ceiling spikes.
+3. **Up, Down, Up:** collect two keys and use a platform above hazards.
+4. **The Return Trip:** collect three keys across alternating walls, then navigate back to the starting exit.
+5. **Ceiling First:** start upside down, collect four keys with an extra floor detour, and return to the ceiling exit.
+6. **Final Circuit:** collect four keys on both surfaces and complete a return trip past floor and ceiling hazards.
+
+The later levels are longer through out-and-back routes, rather than a larger scrolling map. The existing canvas and movement design are preserved.
 
 ## Code map
 
@@ -44,7 +55,7 @@ Added keys, locked exits, spike resets, R restart, two more levels, automatic pr
 - `css/style.css`: page styling, including the added status and sound button.
 - `js/config.js`: Yash's original size, speed, gravity, and color constants.
 - `js/input.js`: held keys and one-time Space/R presses.
-- `js/levels.js`: original floor/ceiling helper and first wall, plus keys, exits, spikes, and two new levels.
+- `js/levels.js`: original floor/ceiling helper and first wall, plus keys, exits, spikes, and five new levels.
 - `js/player.js`: Yash's original player creation and gravity switch.
 - `js/physics.js`: original rectangle and axis-separated collision functions, with a small-step wrapper added.
 - `js/renderer.js`: original background/solid/player drawing, plus keys, exits, spikes, flip border, and victory.
@@ -60,9 +71,9 @@ Keep scripts in their current order; game.js starts the game and must load last.
 
 The first commit (`e3da2c2`) contains all received files unchanged, with a fresh history. SPEC.md is unchanged. No original source file was discarded or renamed; the original movement, player model, collision routines, rendering functions, and overall architecture remain. Most changes are additions at the author's TODOs.
 
-The automated checks pass for locked exits, keys, spike resets, routes through all three levels, final victory, restart, immutable level data, thin-platform collisions, and sound scheduling. The routes use simulated directional input and flips rather than teleporting through levels. The locked-exit and spike-reset unit checks place the player directly at the object being tested.
+The automated checks pass for locked exits, keys, spike resets, routes through all six levels, final victory, restart, immutable level data, thin-platform collisions, and sound scheduling. The routes use simulated directional input and flips rather than teleporting through levels. The locked-exit and spike-reset unit checks place the player directly at the object being tested.
 
-Browser checks verified the unchanged baseline first, then keyboard movement, key collection, unlocking the first exit, automatic transition to level 2, and the sound toggle. No browser JavaScript errors were reported during those checks. Full three-level completion was verified in the simulation; only the first level was played through in the browser.
+Browser checks verified the unchanged baseline first, then keyboard movement, key collection, unlocking the first exit, automatic transition to level 2, and the sound toggle. No browser JavaScript errors were reported during those checks. Full six-level completion was verified in the simulation; only the first level was played through in the browser.
 
 ## Known limitations and shortcuts
 

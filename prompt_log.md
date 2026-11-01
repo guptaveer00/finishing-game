@@ -77,3 +77,10 @@ The first version of the route-test helper also kept moving toward the previous 
 ## Boundaries and result
 
 SPEC.md was preserved unchanged, and no original source files were deleted or renamed. The original prompt log above is retained. AI did not write HANDOFF_REPORT.md; Veer needs to write his own account of inheriting the project. The Google form has not been submitted by AI.
+
+
+## Level expansion prompt (verbatim)
+
+> can u add more levels, this seems more simple. or like if not more levels make them longer and stuff
+
+Added levels 4–6 within the existing LEVELS array. These use three/four keys, alternating wall paths, return trips, a ceiling start, and additional hazards. Preserved levels 1–3 and the inherited movement/collision architecture. Updated the victory text to use LEVELS.length, extended the route tests through all six levels, and updated the README. All 20 checks passed, including complete movement-based routes through every added level.

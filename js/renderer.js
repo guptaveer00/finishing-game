@@ -114,5 +114,5 @@ function drawVictoryScreen(context) {
   context.fillText("You won!", CANVAS_WIDTH / 2, 200);
   context.fillStyle = "#e6e6f0";
   context.font = "18px system-ui";
-  context.fillText("All three levels complete. Press R to play again.", CANVAS_WIDTH / 2, 240);
+  context.fillText(`All ${LEVELS.length} levels complete. Press R to play again.`, CANVAS_WIDTH / 2, 240);
 }

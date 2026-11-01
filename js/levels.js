@@ -102,4 +102,68 @@ const LEVELS = [
       { x: 570, y: 40, width: 100, height: 24, side: "ceiling" },
     ],
   },
+  {
+    name: "Level 4: The Return Trip",
+    playerStart: { x: 60, y: 374 },
+    startGravity: GRAVITY_DOWN,
+    solids: [
+      ...createFloorAndCeiling(),
+      { x: 200, y: 200, width: 40, height: 210 },
+      { x: 400, y: 40, width: 40, height: 210 },
+      { x: 600, y: 200, width: 40, height: 210 },
+    ],
+    keys: [
+      { x: 300, y: 58, width: 20, height: 20 },
+      { x: 500, y: 370, width: 20, height: 20 },
+      { x: 720, y: 58, width: 20, height: 20 },
+    ],
+    // Returning to the start makes the same obstacles a second puzzle.
+    exit: { x: 60, y: 354, width: 36, height: 56 },
+    spikes: [],
+  },
+  {
+    name: "Level 5: Ceiling First",
+    playerStart: { x: 60, y: 40 },
+    startGravity: GRAVITY_UP,
+    solids: [
+      ...createFloorAndCeiling(),
+      { x: 200, y: 40, width: 40, height: 210 },
+      { x: 400, y: 200, width: 40, height: 210 },
+      { x: 600, y: 40, width: 40, height: 210 },
+    ],
+    keys: [
+      { x: 300, y: 370, width: 20, height: 20 },
+      { x: 500, y: 58, width: 20, height: 20 },
+      { x: 720, y: 370, width: 20, height: 20 },
+      { x: 500, y: 370, width: 20, height: 20 },
+    ],
+    exit: { x: 60, y: 40, width: 36, height: 56 },
+    spikes: [
+      { x: 280, y: 40, width: 80, height: 24, side: "ceiling" },
+      { x: 460, y: 386, width: 25, height: 24, side: "floor" },
+    ],
+  },
+  {
+    name: "Level 6: Final Circuit",
+    playerStart: { x: 60, y: 374 },
+    startGravity: GRAVITY_DOWN,
+    solids: [
+      ...createFloorAndCeiling(),
+      { x: 200, y: 200, width: 40, height: 210 },
+      { x: 400, y: 40, width: 40, height: 210 },
+      { x: 600, y: 200, width: 40, height: 210 },
+    ],
+    keys: [
+      { x: 130, y: 370, width: 20, height: 20 },
+      { x: 300, y: 58, width: 20, height: 20 },
+      { x: 500, y: 370, width: 20, height: 20 },
+      { x: 720, y: 58, width: 20, height: 20 },
+    ],
+    exit: { x: 60, y: 354, width: 36, height: 56 },
+    spikes: [
+      { x: 280, y: 386, width: 80, height: 24, side: "floor" },
+      { x: 460, y: 40, width: 80, height: 24, side: "ceiling" },
+      { x: 680, y: 386, width: 80, height: 24, side: "floor" },
+    ],
+  },
 ];

@@ -92,7 +92,7 @@ function gameLoop(timestamp) {
 
 function updateStatus() {
   document.getElementById("level-status").textContent = gameState.hasWon
-    ? "You won! All three levels complete. Press R to play again."
+    ? `You won! All ${LEVELS.length} levels complete. Press R to play again.`
     : `${gameState.currentLevel.name} · Keys left: ${gameState.remainingKeys.length} · Exit ${gameState.isExitUnlocked ? "OPEN" : "LOCKED"} · Gravity ${gameState.player.gravityDirection === GRAVITY_DOWN ? "↓" : "↑"}`;
 }
 
