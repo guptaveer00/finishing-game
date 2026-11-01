@@ -8,18 +8,31 @@
 </head>
 <body>
   <main class="game-container">
-    <h1>GravitySwitcher</h1>
+    <header class="game-header">
+      <div><p class="eyebrow">A GRAVITY-BENDING PUZZLE PLATFORMER</p>
+      <h1>Gravity<span>Switcher</span><span class="title-icon" aria-hidden="true">↕</span></h1>
+      <p class="subtitle">Change your perspective. Find your way out.</p></div>
+      <div class="mission-badge"><span class="live-dot"></span> SIX SECTORS · ONE WAY OUT</div>
+    </header>
+    <section class="arena" aria-label="Game area">
+    <div class="arena-heading"><span>ORBITAL TEST FACILITY</span><span>GRAVITY LINK ACTIVE <i></i></span></div>
 
     <!-- All game drawing happens on this canvas (see js/renderer.js). -->
     <p id="level-status" role="status"></p>
+    <div id="level-progress" class="level-progress" aria-label="Level progress"></div>
     <canvas id="game-canvas" width="800" height="450" tabindex="0" aria-label="GravitySwitcher game. Arrow keys move, Space flips gravity, R restarts."></canvas>
 
+    </section>
+    <div class="bottom-panel">
     <p class="controls">
       <kbd>&larr;</kbd> <kbd>&rarr;</kbd> Move &nbsp;&nbsp;
       <kbd>Space</kbd> Switch gravity
       &nbsp;&nbsp; <kbd>R</kbd> Restart level
       &nbsp;&nbsp; <button id="sound-toggle" type="button" aria-pressed="false">Sound: off</button>
     </p>
+    <p class="legend"><span><b class="legend-key">◆</b> COLLECT KEYS</span><span><b class="legend-spike">▲</b> AVOID SPIKES</span><span><b class="legend-exit">▣</b> FIND THE EXIT</span></p>
+    </div>
+    <footer>Original game by Yash Gupta <span>·</span> Extended by Veer Gupta</footer>
   </main>
 
   <!--

@@ -34,6 +34,10 @@ Numbering matches Yash's unchanged SPEC.md.
 12. **Met:** the player's eye changes with gravity, a brief border flashes on a flip, and the gravity arrow changes.
 13. **Met (opt-in):** enabling sound plays synthesized tones on flips and level completion. Sound scheduling and the browser toggle were checked; audible output was not independently listened to.
 
+## Visual update
+
+Added a space-facility page theme, clearer keyboard controls and object legend, a six-part progress bar, a background grid, shaded platforms, and glowing player/keys/exits. These are decorative changes; collision shapes and the six tested routes are unchanged.
+
 ## What changed
 
 Added keys, locked exits, spike resets, R restart, five more levels, automatic progression, victory, status text, flip feedback, and optional sound. The original first level's wall and start remain. Added smaller physics steps around the original collision routine rather than replacing it.
@@ -69,7 +73,7 @@ Keep scripts in their current order; game.js starts the game and must load last.
 
 ## Preservation and checks
 
-The first commit (`e3da2c2`) contains all received files unchanged, with a fresh history. SPEC.md is unchanged. No original source file was discarded or renamed; the original movement, player model, collision routines, rendering functions, and overall architecture remain. Most changes are additions at the author's TODOs.
+The first commit (`e3da2c2`) contains all received files unchanged, with a fresh history. SPEC.md is unchanged. No original source file was discarded or renamed; the original movement, player model, collision routines, rendering functions, and overall architecture remain. Most changes are additions at the author's TODOs. A source comparison retains 492 of the original 517 source lines verbatim (about 95%); line retention is supporting evidence, while the original logic and design are also preserved.
 
 The automated checks pass for locked exits, keys, spike resets, routes through all six levels, final victory, restart, immutable level data, thin-platform collisions, and sound scheduling. The routes use simulated directional input and flips rather than teleporting through levels. The locked-exit and spike-reset unit checks place the player directly at the object being tested.
 
@@ -84,5 +88,7 @@ Browser checks verified the unchanged baseline first, then keyboard movement, ke
 - No save system, moving platforms, or extra mechanics were added. Levels restart from the beginning after a spike hit.
 
 ## Remaining submission work
+
+The repository is public and the baseline/spec preservation checks pass. The required README, SPEC, and prompt log are separate files, with the original author credited above.
 
 Veer must personally write `HANDOFF_REPORT.md` without AI, as the assignment requires, after playing and reviewing the inherited project. This file has intentionally not been generated. Then commit/push it and submit both repository links through the course form.

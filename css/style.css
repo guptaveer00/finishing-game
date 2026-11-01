@@ -49,3 +49,35 @@ kbd {
 #level-status { min-height: 2.5em; max-width: 800px; color: #d7d7ee; font-size: .9rem; }
 #sound-toggle { color: #e6e6f0; background: #22223a; border: 1px solid #55557a; border-radius: 4px; padding: 5px 10px; cursor: pointer; }
 #game-canvas:focus-visible, #sound-toggle:focus-visible { outline: 3px solid #ffcc4d; outline-offset: 4px; }
+
+/* Phase 2 visual layer: retain the original canvas dimensions and controls. */
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: radial-gradient(ellipse at 12% 0%, #18283c 0, transparent 48%), radial-gradient(ellipse at 95% 85%, #25203c 0, transparent 45%), #0b101a; padding: 38px 20px; }
+.game-container { width: min(1040px, 100%); padding: 0; text-align: left; }
+.game-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 30px; }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2.8px; color: #8eacc2; margin: 0 0 12px; }
+h1 { font-size: clamp(28px, 4vw, 46px); letter-spacing: -1.8px; margin: 0; line-height: 1.1; }
+h1 > span:first-child { color: #89deec; }
+.title-icon { display: inline-grid; place-items: center; font-size: 27px; width: 37px; height: 37px; border: 1px solid #5c8a9c; border-radius: 10px; margin-left: 15px; vertical-align: middle; color: #89deec; }
+.subtitle { color: #92a2b6; font-size: 13px; margin: 12px 0 0; }
+.mission-badge { color: #b5c6d8; font-size: 9px; letter-spacing: 1.5px; padding: 11px 14px; border: 1px solid #2b394c; border-radius: 30px; white-space: nowrap; }
+.live-dot, .arena-heading i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #8fe2ba; margin-right: 7px; box-shadow: 0 0 10px #8fe2ba77; }
+.arena { padding: 18px; background: linear-gradient(150deg,#1b2637,#111925); border: 1px solid #324158; border-radius: 16px; box-shadow: 0 24px 80px #0005; }
+.arena-heading { display: flex; justify-content: space-between; gap: 10px; font-size: 9px; letter-spacing: 1.8px; color: #8facc2; margin: 0 2px 16px; }
+.arena-heading i { width: 5px; height: 5px; margin: 0 0 0 7px; }
+#level-status { max-width: none; min-height: 0; margin: 0 0 12px; color: #e0e9f2; font-size: 12px; line-height: 1.6; }
+.level-progress { display: flex; gap: 5px; margin-bottom: 18px; }
+.level-progress span { flex: 1; height: 3px; border-radius: 2px; background: #344155; }
+.level-progress .complete { background: #6cbb9b; }
+.level-progress .current { background: #a4e9f2; box-shadow: 0 0 9px #a4e9f244; }
+#game-canvas { width: 100%; max-width: 100%; border: 1px solid #435973; border-radius: 8px; background: #101928; }
+.bottom-panel { margin-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+.controls { margin: 0; font-size: 12px; color: #b8c7d8; line-height: 2.4; }
+kbd { background: linear-gradient(#25334a,#1a2537); border-color: #43516a; box-shadow: 0 2px 0 #080d16; border-radius: 5px; padding: 1px 7px; }
+#sound-toggle { background: #1a293b; border-color: #425a72; border-radius: 6px; font-size: 11px; padding: 6px 10px; }
+#sound-toggle:hover { border-color: #89deec; }
+.legend { display: flex; gap: 15px; margin: 0; color: #94a9bf; font-size: 9px; letter-spacing: .7px; }
+.legend b { margin-right: 4px; font-size: 13px; }.legend-key { color: #ffe28a; }.legend-spike { color: #f38192; }.legend-exit { color: #82edba; }
+footer { margin-top: 27px; color: #70849c; font-size: 11px; text-align: center; }footer span { margin: 0 9px; }
+@media(max-width:650px) { body { padding: 24px 12px; }.game-header { margin-bottom: 20px; }.mission-badge { display: none; }.eyebrow { font-size: 8px; letter-spacing: 1.6px; }.arena { padding: 12px; border-radius: 12px; }.arena-heading { font-size: 7px; letter-spacing: .8px; }.arena-heading span:last-child { display: none; }#level-status { font-size: 10px; }.legend { flex-wrap: wrap; }.bottom-panel { gap: 12px; }.title-icon { width: 30px; height: 30px; font-size: 22px; } }

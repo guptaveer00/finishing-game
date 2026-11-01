@@ -90,7 +90,15 @@ function gameLoop(timestamp) {
   requestAnimationFrame(gameLoop);
 }
 
+let lastProgressLevel = -1;
 function updateStatus() {
+  const progressLevel = gameState.hasWon ? LEVELS.length : gameState.currentLevelIndex;
+  if (progressLevel !== lastProgressLevel) {
+    document.getElementById("level-progress").innerHTML = LEVELS.map((level, index) =>
+      `<span class="${index < progressLevel ? "complete" : index === progressLevel ? "current" : ""}" title="${level.name}"></span>`
+    ).join("");
+    lastProgressLevel = progressLevel;
+  }
   document.getElementById("level-status").textContent = gameState.hasWon
     ? `You won! All ${LEVELS.length} levels complete. Press R to play again.`
     : `${gameState.currentLevel.name} · Keys left: ${gameState.remainingKeys.length} · Exit ${gameState.isExitUnlocked ? "OPEN" : "LOCKED"} · Gravity ${gameState.player.gravityDirection === GRAVITY_DOWN ? "↓" : "↑"}`;
