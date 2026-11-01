@@ -45,3 +45,7 @@ kbd {
   font-family: inherit;
   font-size: 0.85rem;
 }
+
+#level-status { min-height: 2.5em; max-width: 800px; color: #d7d7ee; font-size: .9rem; }
+#sound-toggle { color: #e6e6f0; background: #22223a; border: 1px solid #55557a; border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+#game-canvas:focus-visible, #sound-toggle:focus-visible { outline: 3px solid #ffcc4d; outline-offset: 4px; }

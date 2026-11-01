@@ -12,7 +12,7 @@
 //                 Keep solids at least ~20 px thick (see README "Known
 //                 limitations").
 //
-// TODO (Phase 2): extend the format with:
+// Additional level objects:
 //   keys:   [{ x, y, width, height }]   collectible keys
 //   exit:   { x, y, width, height }     locked until all keys are collected
 //   spikes: [{ x, y, width, height }]   touching one resets the level
@@ -49,6 +49,9 @@ const LEVELS = [
       y: CANVAS_HEIGHT - FLOOR_AND_CEILING_THICKNESS - PLAYER_HEIGHT,
     },
     startGravity: GRAVITY_DOWN,
+    keys: [{ x: 540, y: 58, width: 20, height: 20 }],
+    exit: { x: 730, y: 354, width: 36, height: 56 },
+    spikes: [],
     solids: [
       ...createFloorAndCeiling(),
       // Wall rising from the floor. It is too tall to get past on the floor,
@@ -60,9 +63,43 @@ const LEVELS = [
         height:
           CANVAS_HEIGHT - 2 * FLOOR_AND_CEILING_THICKNESS - LEVEL_1_WALL_GAP_BELOW_CEILING,
       },
-      // TODO (Phase 2): put the exit on the far side of the wall so getting
-      // past it completes the level.
+      // The exit and key are on the far side; use the ceiling to cross.
     ],
   },
-  // TODO (Phase 2): add more levels here. They will be played in array order.
+  {
+    name: "Level 2: Watch Your Step",
+    playerStart: { x: 60, y: 374 },
+    startGravity: GRAVITY_DOWN,
+    solids: [
+      ...createFloorAndCeiling(),
+      { x: 410, y: 40, width: 40, height: 160 },
+      { x: 570, y: 300, width: 40, height: 110 },
+    ],
+    keys: [{ x: 290, y: 58, width: 20, height: 20 }],
+    exit: { x: 730, y: 354, width: 36, height: 56 },
+    spikes: [
+      { x: 200, y: 386, width: 150, height: 24, side: "floor" },
+      { x: 630, y: 40, width: 100, height: 24, side: "ceiling" },
+    ],
+  },
+  {
+    name: "Level 3: Up, Down, Up",
+    playerStart: { x: 60, y: 374 },
+    startGravity: GRAVITY_DOWN,
+    solids: [
+      ...createFloorAndCeiling(),
+      { x: 230, y: 220, width: 40, height: 190 },
+      { x: 480, y: 40, width: 40, height: 170 },
+      { x: 570, y: 280, width: 150, height: 20 },
+    ],
+    keys: [
+      { x: 310, y: 58, width: 20, height: 20 },
+      { x: 420, y: 370, width: 20, height: 20 },
+    ],
+    exit: { x: 740, y: 40, width: 36, height: 56 },
+    spikes: [
+      { x: 560, y: 386, width: 100, height: 24, side: "floor" },
+      { x: 570, y: 40, width: 100, height: 24, side: "ceiling" },
+    ],
+  },
 ];

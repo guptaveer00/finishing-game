@@ -28,6 +28,15 @@ function rectanglesOverlap(rectA, rectB) {
  * @param {number} deltaSeconds time since the last frame
  */
 function updatePlayerPhysics(player, level, horizontalInput, deltaSeconds) {
+  // Keep each movement below 5 px at maximum speed so thin solids cannot
+  // be crossed between overlap checks. Preserve the original axis logic.
+  const steps = Math.max(1, Math.ceil(deltaSeconds / (1 / 240)));
+  for (let i = 0; i < steps; i++) {
+    updatePlayerPhysicsStep(player, level, horizontalInput, deltaSeconds / steps);
+  }
+}
+
+function updatePlayerPhysicsStep(player, level, horizontalInput, deltaSeconds) {
   // --- Horizontal movement ---
   player.velocityX = horizontalInput * PLAYER_MOVE_SPEED;
   if (horizontalInput !== 0) {

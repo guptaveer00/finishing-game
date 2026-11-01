@@ -6,7 +6,7 @@
 const KEY_LEFT = "ArrowLeft";
 const KEY_RIGHT = "ArrowRight";
 const KEY_SWITCH_GRAVITY = "Space";
-// TODO (Phase 2): add KEY_RESTART = "KeyR" and a consumeRestartPress() helper.
+const KEY_RESTART = "KeyR";
 
 // Keys that should not scroll the page while the game is focused.
 const KEYS_TO_BLOCK_DEFAULT = [KEY_LEFT, KEY_RIGHT, KEY_SWITCH_GRAVITY, "ArrowUp", "ArrowDown"];
@@ -16,6 +16,7 @@ const heldKeys = new Set();
 // Gravity switching happens once per key press, not every frame while Space
 // is held, so we remember that a press happened until the game consumes it.
 let gravitySwitchRequested = false;
+let restartRequested = false;
 
 window.addEventListener("keydown", (event) => {
   if (KEYS_TO_BLOCK_DEFAULT.includes(event.code)) {
@@ -26,6 +27,8 @@ window.addEventListener("keydown", (event) => {
   if (event.code === KEY_SWITCH_GRAVITY && !event.repeat) {
     gravitySwitchRequested = true;
   }
+
+  if (event.code === KEY_RESTART && !event.repeat) restartRequested = true;
 
   heldKeys.add(event.code);
 });
@@ -38,6 +41,8 @@ window.addEventListener("keyup", (event) => {
 // the window is in the background would stay "held" forever.
 window.addEventListener("blur", () => {
   heldKeys.clear();
+  gravitySwitchRequested = false;
+  restartRequested = false;
 });
 
 /**
@@ -56,5 +61,11 @@ function getHorizontalInputDirection() {
 function consumeGravitySwitchPress() {
   const wasRequested = gravitySwitchRequested;
   gravitySwitchRequested = false;
+  return wasRequested;
+}
+
+function consumeRestartPress() {
+  const wasRequested = restartRequested;
+  restartRequested = false;
   return wasRequested;
 }

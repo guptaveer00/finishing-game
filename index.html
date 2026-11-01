@@ -11,12 +11,14 @@
     <h1>GravitySwitcher</h1>
 
     <!-- All game drawing happens on this canvas (see js/renderer.js). -->
-    <canvas id="game-canvas" width="800" height="450"></canvas>
+    <p id="level-status" role="status"></p>
+    <canvas id="game-canvas" width="800" height="450" tabindex="0" aria-label="GravitySwitcher game. Arrow keys move, Space flips gravity, R restarts."></canvas>
 
     <p class="controls">
       <kbd>&larr;</kbd> <kbd>&rarr;</kbd> Move &nbsp;&nbsp;
       <kbd>Space</kbd> Switch gravity
-      <!-- TODO (Phase 2): add "R: Restart level" once restarting is implemented. -->
+      &nbsp;&nbsp; <kbd>R</kbd> Restart level
+      &nbsp;&nbsp; <button id="sound-toggle" type="button" aria-pressed="false">Sound: off</button>
     </p>
   </main>
 
@@ -31,6 +33,7 @@
   <script src="js/player.js"></script>
   <script src="js/physics.js"></script>
   <script src="js/renderer.js"></script>
+  <script src="js/sound.js"></script>
   <script src="js/game.js"></script>
 </body>
 </html>
