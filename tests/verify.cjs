@@ -53,6 +53,15 @@ const results = vm.runInContext(`(() => {
   const p = createPlayer({ x: 100, y: 100 }, GRAVITY_DOWN); p.velocityY = 1200;
   updatePlayerPhysics(p, thin, 0, 1 / 30);
   check(p.y <= 114, 'Fast fall does not skip a thin platform');
+  const calls = [];
+  soundEnabled = true;
+  audioContext = {
+    state: 'running', currentTime: 0, destination: {},
+    createOscillator() { return { frequency: { setValueAtTime() {}, exponentialRampToValueAtTime() {} }, connect() {}, start() { calls.push('start'); }, stop() {} }; },
+    createGain() { return { gain: { setValueAtTime() {}, exponentialRampToValueAtTime() {} }, connect() {} }; },
+  };
+  playGameSound('flip'); playGameSound('complete');
+  check(calls.length === 2, 'Both sound cues schedule when enabled');
   return results;
 })()`, sandbox);
 for (const result of results) console.log('PASS: ' + result);
